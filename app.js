@@ -33,7 +33,7 @@ function dealCards(cards) {
 
         faceCardDiv.appendChild(img);
 
-        cardElement.append(backCardDiv, faceCardDiv);
+        cardElement.append(faceCardDiv, backCardDiv);
         fragment.appendChild(cardElement);
     }
 
