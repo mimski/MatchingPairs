@@ -3,6 +3,10 @@ let cardTable = document.querySelector(".card-table");
 let firstCard = null;
 let secondCard = null;
 let noFlipping = false;
+let triesRemaining = 5;
+let counter = document.querySelector(".tries-remaining");
+
+counter.textContent = triesRemaining;
 
 fetch("./data/card_info.json")
     .then(response => response.json())
@@ -103,8 +107,14 @@ function setCardBackground(card, color) {
 
 function unflipCards() {
     setTimeout(() => {
-         firstCard.classList.remove("flipped");
-         secondCard.classList.remove("flipped");
+        --triesRemaining;
+        counter.textContent = triesRemaining;
+        if(triesRemaining === 0) {
+            alert("YOU LOST");
+            return;
+        }
+        firstCard.classList.remove("flipped");
+        secondCard.classList.remove("flipped");
         resetFlags();
     }, 1000);
 }
