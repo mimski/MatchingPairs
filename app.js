@@ -3,7 +3,8 @@ let cardTable = document.querySelector(".card-table");
 let firstCard = null;
 let secondCard = null;
 let noFlipping = false;
-let triesRemaining = 5;
+let triesRemaining = 10;
+let winCounter = null;
 let counter = document.querySelector(".tries-remaining");
 
 counter.textContent = triesRemaining;
@@ -11,6 +12,7 @@ counter.textContent = triesRemaining;
 fetch("./data/card_info.json")
     .then(response => response.json())
     .then((data) => {
+        winCounter = data.length;
         cards = [...data, ...data];
 
         let suffledCards = shuffle();
@@ -94,6 +96,16 @@ function checkForMatch() {
 }
 
 function matchCards() {
+    --winCounter;
+    if(winCounter === 0) {
+        setTimeout(() => {
+            alert("YOU WIN. Please refresh the browser.");
+            let confettiInterval = setInterval(createConfetti, 300);
+            setTimeout(() => {
+               clearInterval(confettiInterval);
+            }, 5000);
+        }, 1000);
+    }
     firstCard.removeEventListener("click", flipCard);
     secondCard.removeEventListener("click", flipCard);
     setCardBackground(firstCard, "greenyellow");
@@ -136,5 +148,18 @@ function showImageOverlay() {
 
     requestAnimationFrame(() => {
         wrapper.style.opacity = 1;
+    });
+}
+
+function createConfetti() {
+    let confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    let randomX = Math.random() * window.innerWidth;
+    confetti.style.left = `${randomX}px`;
+    let duration = Math.random()*2 + 3;
+    confetti.style.animationDuration = `${duration}s`;
+    document.getElementsByClassName("celebration-wrapper")[0].appendChild(confetti);
+    confetti.addEventListener("animationend", ()=> {
+       confetti.remove();
     });
 }
