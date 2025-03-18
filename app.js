@@ -39,7 +39,7 @@ function dealCards(cards) {
 
     cardTable.appendChild(fragment);
 
-    let deck = document.querySelectorAll('.card');
+    let deck = document.querySelectorAll(".card");
     deck.forEach(card => {
         card.addEventListener("click", flipCard);
     });

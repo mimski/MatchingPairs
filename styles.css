@@ -29,6 +29,7 @@ p {
 div.card {
     position: relative;
     transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d;
 }
 
 img.face-image {
@@ -52,5 +53,11 @@ img.face-image {
     background-image: url("./images/cover.jpg");
     height: 100%;
     width: 100%;
+    border-radius: 5%;
     background-size: cover;
+    backface-visibility: hidden;
+}
+
+.card .flipped {
+    transform: rotateY(180deg);
 }
