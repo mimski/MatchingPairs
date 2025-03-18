@@ -38,4 +38,13 @@ function dealCards(cards) {
     }
 
     cardTable.appendChild(fragment);
+
+    let deck = document.querySelectorAll('.card');
+    deck.forEach(card => {
+        card.addEventListener("click", flipCard);
+    });
+}
+
+function flipCard() {
+    this.classList.add("flipped");
 }
