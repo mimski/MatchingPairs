@@ -2,6 +2,7 @@ let cards = [];
 let cardTable = document.querySelector(".card-table");
 let firstCard = null;
 let secondCard = null;
+let noFlipping = false;
 
 fetch("./data/card_info.json")
     .then(response => response.json())
@@ -65,6 +66,10 @@ function dealCards(cards) {
 }
 
 function flipCard() {
+    if(noFlipping) {
+        return;
+    }
+
     this.classList.add("flipped");
 
     if(!firstCard) {
@@ -74,6 +79,7 @@ function flipCard() {
 
     if(!secondCard) {
         secondCard = this;
+        noFlipping = true;
         return;
     }
 }
