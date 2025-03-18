@@ -58,6 +58,6 @@ img.face-image {
     backface-visibility: hidden;
 }
 
-.card .flipped {
+.card.flipped {
     transform: rotateY(180deg);
 }

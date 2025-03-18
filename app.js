@@ -1,16 +1,35 @@
 let cards = [];
 let cardTable = document.querySelector(".card-table");
+let firstCard = null;
+let secondCard = null;
 
 fetch("./data/card_info.json")
     .then(response => response.json())
     .then((data) => {
         cards = [...data, ...data];
 
-        dealCards(cards);
+        let suffledCards = shuffle();
+
+        dealCards(suffledCards);
     })
     .catch((error) => {
         console.log("Error fetching card data: ", error);
     });
+
+function shuffle() {
+    let shuffledCardsArray = [...cards];
+    let totalCards = shuffledCardsArray.length;
+    let currentIndex = totalCards - 1;
+
+    // Fisher-Yates (or Knuth) shuffle algorithm. Ensures that each possible permutation of
+    // the array has an equal probability of occurring.
+    for(currentIndex; currentIndex > 0; currentIndex--) {
+        let randomCardIndex = Math.floor(Math.random() * (currentIndex + 1));
+        [shuffledCardsArray[currentIndex], shuffledCardsArray[randomCardIndex]] = [shuffledCardsArray[randomCardIndex], shuffledCardsArray[currentIndex]];
+    }
+
+    return shuffledCardsArray;
+}
 
 function dealCards(cards) {
     console.log("welcome to the random card game");
@@ -47,4 +66,14 @@ function dealCards(cards) {
 
 function flipCard() {
     this.classList.add("flipped");
+
+    if(!firstCard) {
+        firstCard = this;
+        return;
+    }
+
+    if(!secondCard) {
+        secondCard = this;
+        return;
+    }
 }
