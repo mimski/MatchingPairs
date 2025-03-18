@@ -51,7 +51,7 @@ img.face-image {
 
 .card .back {
     position: absolute;
-    background-image: url("./images/cover.jpg");
+    background-image: url("./images/cover.png");
     height: 100%;
     width: 100%;
     border-radius: 5%;

@@ -142,7 +142,7 @@ function showImageOverlay() {
     let wrapper = document.createElement("div");
     wrapper.classList.add("image-overlay");
     let img = document.createElement("img");
-    img.src = "./images/loser.jpg";
+    img.src = "./images/lost.webp";
     wrapper.appendChild(img);
     document.body.appendChild(wrapper);
 
