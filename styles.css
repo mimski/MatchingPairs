@@ -61,3 +61,19 @@ img.face-image {
 .card.flipped {
     transform: rotateY(180deg);
 }
+
+.image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.image-overlay img {
+    max-height: 100%;
+    max-width: 100%;
+}

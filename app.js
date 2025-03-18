@@ -111,6 +111,7 @@ function unflipCards() {
         counter.textContent = triesRemaining;
         if(triesRemaining === 0) {
             alert("YOU LOST");
+            showImageOverlay();
             return;
         }
         firstCard.classList.remove("flipped");
@@ -123,4 +124,17 @@ function resetFlags() {
     firstCard = null;
     secondCard = null;
     noFlipping = false;
+}
+
+function showImageOverlay() {
+    let wrapper = document.createElement("div");
+    wrapper.classList.add("image-overlay");
+    let img = document.createElement("img");
+    img.src = "./images/loser.jpg";
+    wrapper.appendChild(img);
+    document.body.appendChild(wrapper);
+
+    requestAnimationFrame(() => {
+        wrapper.style.opacity = 1;
+    });
 }
