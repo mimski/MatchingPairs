@@ -69,6 +69,7 @@ function flipCard() {
     if(noFlipping) return;
 
     this.classList.add("flipped");
+    if(this === firstCard) return;
 
     if(!firstCard) {
         firstCard = this;
@@ -93,6 +94,7 @@ function matchCards() {
     secondCard.removeEventListener("click", flipCard);
     setCardBackground(firstCard, "greenyellow");
     setCardBackground(secondCard, "greenyellow");
+    resetFlags();
 }
 
 function setCardBackground(card, color) {
