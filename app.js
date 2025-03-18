@@ -66,9 +66,7 @@ function dealCards(cards) {
 }
 
 function flipCard() {
-    if(noFlipping) {
-        return;
-    }
+    if(noFlipping) return;
 
     this.classList.add("flipped");
 
@@ -77,9 +75,22 @@ function flipCard() {
         return;
     }
 
-    if(!secondCard) {
-        secondCard = this;
-        noFlipping = true;
-        return;
+    secondCard = this;
+    noFlipping = true;
+    checkForMatch();
+}
+
+function checkForMatch() {
+    if(firstCard.dataset.name === secondCard.dataset.name) {
+        matchCards();
+    } else {
+        unflipCards();
     }
+}
+
+function unflipCards() {
+    setTimeout(() => {
+         firstCard.classList.remove("flipped");
+         secondCard.classList.remove("flipped");
+    }, 1000);
 }
