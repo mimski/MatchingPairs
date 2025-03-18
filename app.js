@@ -88,6 +88,17 @@ function checkForMatch() {
     }
 }
 
+function matchCards() {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    setCardBackground(firstCard, "greenyellow");
+    setCardBackground(secondCard, "greenyellow");
+}
+
+function setCardBackground(card, color) {
+    card.children[0].style.background = 'greenyellow';
+}
+
 function unflipCards() {
     setTimeout(() => {
          firstCard.classList.remove("flipped");
